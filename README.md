@@ -1,5 +1,10 @@
 # Provider Plugin Cache
 
+1. copy the `terraform-plugin-cache` folder to your home folder.
+2. set the `TF_PLUGIN_CACHE_DIR` environment variable
+
+---
+
 By default, terraform init downloads plugins into a subdirectory of the working directory so that each working directory is self-contained. As a consequence, if you have multiple configurations that use the same provider then a separate copy of its plugin will be downloaded for each configuration.
 
 Given that provider plugins can be quite large (on the order of hundreds of megabytes), this default behavior can be inconvenient for those with slow or metered Internet connections. Therefore Terraform optionally allows the use of a local directory as a shared plugin cache, which then allows each distinct plugin binary to be downloaded only once.
@@ -7,7 +12,7 @@ Given that provider plugins can be quite large (on the order of hundreds of mega
 To enable the plugin cache, use the `plugin_cache_dir` setting in the CLI configuration file. For example:
 
 ```
-plugin_cache_dir = "$HOME/.terraform.d/plugin-cache"
+plugin_cache_dir = "~/terraform-plugin-cache"
 ```
 
 This directory must already exist before Terraform will cache plugins; Terraform will not create the directory itself.
@@ -17,7 +22,7 @@ Please note that on Windows it is necessary to use forward slash separators (/) 
 Setting this in the configuration file is the recommended approach for a persistent setting. Alternatively, the `TF_PLUGIN_CACHE_DIR` environment variable can be used to enable caching or to override an existing cache directory within a particular shell session:
 
 ``` console
-export TF_PLUGIN_CACHE_DIR="$HOME/.terraform.d/plugin-cache"
+export TF_PLUGIN_CACHE_DIR="~/terraform-plugin-cache"
 ```
 
 When a plugin cache directory is enabled, the terraform init command will still use the configured or implied installation methods to obtain metadata about which plugins are available, but once a suitable version has been selected it will first check to see if the chosen plugin is already available in the cache directory. If so, Terraform will use the previously-downloaded copy.
