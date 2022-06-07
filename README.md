@@ -1,7 +1,18 @@
 # Provider Plugin Cache
 
 1. copy the `terraform-plugin-cache` folder to your home folder.
-2. set the `TF_PLUGIN_CACHE_DIR` environment variable
+
+```
+terraform-plugin-cache/
+└── registry.terraform.io
+    └── hashicorp
+        └── random
+            └── 3.3.1
+                └── linux_amd64
+                    └── terraform-provider-random_v3.3.1_x5
+```
+
+3. set the `TF_PLUGIN_CACHE_DIR` environment variable
 
 ---
 
@@ -21,7 +32,7 @@ Please note that on Windows it is necessary to use forward slash separators (/) 
 
 Setting this in the configuration file is the recommended approach for a persistent setting. Alternatively, the `TF_PLUGIN_CACHE_DIR` environment variable can be used to enable caching or to override an existing cache directory within a particular shell session:
 
-``` console
+```
 export TF_PLUGIN_CACHE_DIR="~/terraform-plugin-cache"
 ```
 
